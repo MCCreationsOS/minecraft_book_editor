@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $patchStyleText } from "@lexical/selection";
-import { $getRoot, $getSelection, $isRangeSelection, createCommand, FORMAT_TEXT_COMMAND, REDO_COMMAND, UNDO_COMMAND } from "lexical";
+import { $getRoot, $getSelection, $isRangeSelection, REDO_COMMAND, UNDO_COMMAND } from "lexical";
 import { useBookState } from "@/state/book_state";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Label } from "../ui/label";

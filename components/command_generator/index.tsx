@@ -12,7 +12,7 @@ import { useState } from "react";
 export function generateCommand1204(author: string, title: string, pages: SerializedEditorState[]) { 
     // Convert pages to Minecraft book format
     const formattedPages = pages.map(page => {
-        let pageObject: {text: string, bold?: boolean, italic?: boolean, strikethrough?: boolean, underline?: boolean, color?: string}[] = []
+        const pageObject: {text: string, bold?: boolean, italic?: boolean, strikethrough?: boolean, underline?: boolean, color?: string}[] = []
         const nodes = page.root.children as SerializedLexicalNode[]
 
         nodes.forEach((node) => {
@@ -21,9 +21,9 @@ export function generateCommand1204(author: string, title: string, pages: Serial
                 paragraphNode.children.forEach((child) => {
                     if (child.type === "text") {
                         const textNode = child as SerializedTextNode
-                        let text = textNode.text
+                        const text = textNode.text
 
-                        let obj: {text: string, bold?: boolean, italic?: boolean, strikethrough?: boolean, underline?: boolean, color?: string} = {text: text}
+                        const obj: {text: string, bold?: boolean, italic?: boolean, strikethrough?: boolean, underline?: boolean, color?: string} = {text: text}
                         if (textNode.format & 1) { // Bold
                             obj.bold = true
                         }
@@ -51,30 +51,6 @@ export function generateCommand1204(author: string, title: string, pages: Serial
 
     // Generate the give command
     return `/give @s written_book[written_book_content={pages:[${formattedPages.join(",")}],author:"${author}",title:"${title}"}]`
-}
-
-// Helper to convert hex colors to Minecraft color codes
-function getMinecraftColorCode(hex: string): string {
-    const colors: {[key: string]: string} = {
-        "#000000": "§0", // Black
-        "#0000AA": "§1", // Dark Blue
-        "#00AA00": "§2", // Dark Green
-        "#00AAAA": "§3", // Dark Aqua
-        "#AA0000": "§4", // Dark Red
-        "#AA00AA": "§5", // Dark Purple
-        "#FFAA00": "§6", // Gold
-        "#AAAAAA": "§7", // Gray
-        "#555555": "§8", // Dark Gray
-        "#5555FF": "§9", // Blue
-        "#55FF55": "§a", // Green
-        "#55FFFF": "§b", // Aqua
-        "#FF5555": "§c", // Red
-        "#FF55FF": "§d", // Light Purple
-        "#FFFF55": "§e", // Yellow
-        "#FFFFFF": "§f"  // White
-    }
-
-    return colors[hex] || ""
 }
 
 export default function MinecraftBookCommandGenerator() {
