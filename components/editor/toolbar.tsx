@@ -91,9 +91,9 @@ export default function EditorToolbar() {
     }
 
     return (
-        <div className="flex items-center space-x-4 mb-1 bg-gray-100 p-1 rounded-lg">
-            <Button onClick={() => {editor.dispatchCommand(UNDO_COMMAND, undefined)}}><Undo/></Button>
-            <Button onClick={() => {editor.dispatchCommand(REDO_COMMAND, undefined)}}><Redo/></Button>
+        <div className="flex items-center space-x-4 mb-1 bg-secondary p-1 rounded-lg">
+            <Button variant="outline" onClick={() => {editor.dispatchCommand(UNDO_COMMAND, undefined)}}><Undo/></Button>
+            <Button variant="outline" onClick={() => {editor.dispatchCommand(REDO_COMMAND, undefined)}}><Redo/></Button>
             <ToggleGroup type="multiple">
                 <ToggleGroupItem value="bold" aria-label="Toggle bold" onClick={() => {formatText("bold")}}>
                     <Bold className="h-4 w-4"></Bold>

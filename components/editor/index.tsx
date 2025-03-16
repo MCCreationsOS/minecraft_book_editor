@@ -71,7 +71,7 @@ export default function MinecraftBookEditor() {
                 <EditorToolbar />
                 <RichTextPlugin
                 contentEditable={
-                    <ContentEditable className="w-[500px] h-[700px] bg-[#fffaee] border-[#75321e] border-4 rounded-lg p-3 pt-15 font-minecraft text-5xl"/>
+                    <ContentEditable className="w-[500px] h-[700px] bg-[#fffaee] border-[#75321e] border-4 rounded-lg p-3 pt-15 font-minecraft text-5xl text-black"/>
                 }
                 ErrorBoundary={LexicalErrorBoundary}
                 />
