@@ -26,7 +26,7 @@ export default function EditorUpdateManager() {
                             textInParagraph += textNode.getTextContent().length
                         }
                     })
-                    paragraphCount = paragraphCount + Math.floor(textInParagraph / 19)
+                    paragraphCount = paragraphCount + Math.floor(textInParagraph / 20)
                 }
             })
 
