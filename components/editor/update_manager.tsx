@@ -1,7 +1,6 @@
 import { useBookState } from "@/state/book_state";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { LexicalNode, ParagraphNode, RootNode, SerializedLexicalNode, SerializedTextNode, TextNode } from "lexical";
-import { SerializedParagraphNode } from "lexical";
+import { LexicalNode, ParagraphNode, RootNode, TextNode } from "lexical";
 import { useEffect } from "react";
 
 export default function EditorUpdateManager() {
