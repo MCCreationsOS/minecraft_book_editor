@@ -1,7 +1,6 @@
 "use client"
 import { Switch } from "./switch"
 import { useTheme } from "next-themes"
-import { Label } from "./label"
 import { Sun, Moon } from "lucide-react"
 export default function DarkModeSwitch() {
     const { theme, setTheme } = useTheme()

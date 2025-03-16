@@ -16,7 +16,7 @@ export default function EditorUpdateManager() {
             newPages[currentPage] = serialized
             setPages(newPages)
         })
-    }, [editor, pages, currentPage])
+    }, [editor, pages, currentPage, setPages])
 
     return null
 }

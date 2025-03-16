@@ -1,4 +1,4 @@
-import { Baseline, Bold, ChevronLeft, ChevronRight, Italic, Plus, Redo, Strikethrough, Trash2, Type, Underline, Undo } from "lucide-react";
+import { Baseline, Bold, ChevronLeft, ChevronRight, Italic, Plus, Redo, Strikethrough, Trash2, Underline, Undo } from "lucide-react";
 import { Button } from "../ui/button";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";

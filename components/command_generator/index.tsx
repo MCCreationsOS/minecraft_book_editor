@@ -39,7 +39,7 @@ export function generateCommand1214(author: string, title: string, pages: Serial
                             obj.underline = true
                         }
                         if (textNode.style) {
-                            obj.color = textNode.style
+                            obj.color = textNode.style.split("color: ")[1].replace(";", "")
                         }
                         pageObject.push(obj)
                     }
