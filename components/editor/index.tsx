@@ -10,6 +10,7 @@ import { Input } from "../ui/input";
 import EditorToolbar from "./toolbar";
 import EditorUpdateManager from "./update_manager";
 import { useBookState } from "@/state/book_state";
+import { toast } from "sonner";
 
 const theme = {
     text: {
@@ -23,7 +24,8 @@ const theme = {
 }
 
 function onError(error: Error) {
-    console.error(error);
+    // console.error(error);
+    toast.error(error.message)
 }
 
 export default function MinecraftBookEditor() {
@@ -71,7 +73,7 @@ export default function MinecraftBookEditor() {
                 <EditorToolbar />
                 <RichTextPlugin
                 contentEditable={
-                    <ContentEditable className="w-[500px] h-[700px] bg-[#fffaee] border-[#75321e] border-4 rounded-lg p-3 pt-15 font-minecraft text-5xl text-black"/>
+                    <ContentEditable className="w-[500px] h-[700px] bg-[#fffaee] border-[#75321e] border-4 rounded-lg p-3 pt-15 font-minecraft text-5xl text-black overflow-y-auto"/>
                 }
                 ErrorBoundary={LexicalErrorBoundary}
                 />

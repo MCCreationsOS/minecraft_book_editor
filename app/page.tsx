@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import DarkModeSwitch from "@/components/ui/dark_mode_switch";
 import { MessageCircleWarning } from "lucide-react";
 import Link from "next/link";
+import { Toaster } from "sonner";
 export default function Home() {
     return (
         <main className="container mx-auto py-8 px-4">
@@ -33,6 +34,7 @@ export default function Home() {
                     </CardContent>
                 </Card>
             </div>
+            <Toaster />
         </main>
     );
 }
