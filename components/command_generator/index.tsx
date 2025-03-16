@@ -8,8 +8,10 @@ import { Textarea } from "../ui/textarea";
 import { useBookState } from "@/state/book_state";
 import { SerializedEditorState, SerializedLexicalNode, SerializedTextNode, SerializedParagraphNode } from "lexical";
 import { useState } from "react";
+import { Copy } from "lucide-react";
+import { Check } from "lucide-react";
 
-export function generateCommand1204(author: string, title: string, pages: SerializedEditorState[]) { 
+export function generateCommand1204(author: string, title: string, pages: SerializedEditorState[], useLore: boolean, loreText: string) { 
     // Convert pages to Minecraft book format
     const formattedPages = pages.map(page => {
         const pageObject: {text: string, bold?: boolean, italic?: boolean, strikethrough?: boolean, underline?: boolean, color?: string}[] = []
@@ -50,7 +52,7 @@ export function generateCommand1204(author: string, title: string, pages: Serial
     })
 
     // Generate the give command
-    return `/give @s written_book[written_book_content={pages:[${formattedPages.join(",")}],author:"${author}",title:"${title}"}]`
+    return `/give @s written_book[written_book_content={pages:[${formattedPages.join(",")}],author:"${author}",title:"${title}"}${useLore ? `,lore=['{"text":"${loreText}"}']` : ""}]`
 }
 
 export default function MinecraftBookCommandGenerator() {
@@ -59,6 +61,15 @@ export default function MinecraftBookCommandGenerator() {
     const title = useBookState((state) => state.title)
     const [useLore, setUseLore] = useState(false);
     const [loreText, setLoreText] = useState("");
+    const [copied, setCopied] = useState(false);
+
+    const copyCommand = () => {
+        navigator.clipboard.writeText(generateCommand1204(author, title, pages, useLore, loreText))
+        setCopied(true)
+        setTimeout(() => {
+            setCopied(false)
+        }, 2000)
+    }
 
     return (
         <div className="space-y-4">
@@ -93,7 +104,7 @@ export default function MinecraftBookCommandGenerator() {
                 <div className="relative">
                     <Textarea
                         id="command"
-                        value={generateCommand1204(author, title, pages)}
+                        value={generateCommand1204(author, title, pages, useLore, loreText)}
                         readOnly
                         className="h-32 font-mono text-xs pr-10"
                     />
@@ -102,15 +113,15 @@ export default function MinecraftBookCommandGenerator() {
                         variant="ghost"
                         className={cn(
                             "absolute top-2 right-2 h-8 w-8",
-                            // copied && "text-green-500"
+                            copied && "text-green-500"
                         )}
-                        // onClick={copyCommand}
+                        onClick={copyCommand}
                     >
-                        {/* {copied ? (
+                        {copied ? (
                             <Check className="h-4 w-4" />
                         ) : (
                             <Copy className="h-4 w-4" />
-                        )} */}
+                        )}
                     </Button>
                 </div>
             </div>
