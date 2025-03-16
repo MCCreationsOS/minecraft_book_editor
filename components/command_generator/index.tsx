@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Copy } from "lucide-react";
 import { Check } from "lucide-react";
 
-export function generateCommand1204(author: string, title: string, pages: SerializedEditorState[], useLore: boolean, loreText: string) { 
+export function generateCommand1214(author: string, title: string, pages: SerializedEditorState[], useLore: boolean, loreText: string) { 
     // Convert pages to Minecraft book format
     const formattedPages = pages.map(page => {
         const pageObject: {text: string, bold?: boolean, italic?: boolean, strikethrough?: boolean, underline?: boolean, color?: string}[] = []
@@ -52,7 +52,7 @@ export function generateCommand1204(author: string, title: string, pages: Serial
     })
 
     // Generate the give command
-    return `/give @s written_book[written_book_content={pages:[${formattedPages.join(",")}],author:"${author}",title:"${title}"}${useLore ? `,lore=['{"text":"${loreText}"}']` : ""}]`
+    return `/give @p written_book[written_book_content={pages:[${formattedPages.join(",")}],author:"${author}",title:"${title}"}${useLore ? `,lore=['{"text":"${loreText}"}']` : ""}]`
 }
 
 export default function MinecraftBookCommandGenerator() {
@@ -63,8 +63,10 @@ export default function MinecraftBookCommandGenerator() {
     const [loreText, setLoreText] = useState("");
     const [copied, setCopied] = useState(false);
 
+    const command = generateCommand1214(author, title, pages, useLore, loreText)
+
     const copyCommand = () => {
-        navigator.clipboard.writeText(generateCommand1204(author, title, pages, useLore, loreText))
+        navigator.clipboard.writeText(command)
         setCopied(true)
         setTimeout(() => {
             setCopied(false)
@@ -104,7 +106,7 @@ export default function MinecraftBookCommandGenerator() {
                 <div className="relative">
                     <Textarea
                         id="command"
-                        value={generateCommand1204(author, title, pages, useLore, loreText)}
+                        value={command}
                         readOnly
                         className="h-32 font-mono text-xs pr-10"
                     />
@@ -127,7 +129,7 @@ export default function MinecraftBookCommandGenerator() {
             </div>
 
             <div className="text-sm text-muted-foreground">
-                <p>Paste this command in Minecraft 1.21.4 to get your book.</p>
+                <p>Paste this command in {command.length < 256 ? "the chat or a command block" : <b>a command block</b>} in Minecraft 1.21.4 to get your book.</p>
             </div>
         </div>
     );
