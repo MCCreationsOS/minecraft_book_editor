@@ -1,4 +1,4 @@
-import { Bold, ChevronLeft, ChevronRight, Italic, Plus, Redo, Strikethrough, Trash2, Type, Underline, Undo } from "lucide-react";
+import { Baseline, Bold, ChevronLeft, ChevronRight, Italic, Plus, Redo, Strikethrough, Trash2, Type, Underline, Undo } from "lucide-react";
 import { Button } from "../ui/button";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
@@ -111,7 +111,7 @@ export default function EditorToolbar() {
             <Popover>
                 <PopoverTrigger asChild>
                 <Button variant="outline" size="icon">
-                    <Type className="h-4 w-4" />
+                    <Baseline className="h-4 w-4"></Baseline>
                 </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-64">
